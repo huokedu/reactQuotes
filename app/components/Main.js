@@ -1,8 +1,21 @@
 import React from "react";
+import Navbar from "../components/Navbar.js";
+import Footer from "../components/Footer.js";
+import Quote from "../components/Quote.js";
 
-// very basic component to get started
-const Main = () => (
-  <h1>Hello World!</h1>
-);
 
-export default Main;
+export default class Main extends React.Component{
+
+  // Here we render the function
+  render() {
+  		return(
+  			<div className="container">
+	  			<Navbar/>
+	  			<Quote/>
+	  			<Footer/>
+  			</div>
+  			)
+  }
+
+
+};
