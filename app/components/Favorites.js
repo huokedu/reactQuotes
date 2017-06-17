@@ -15,7 +15,8 @@ export default class Favorites extends React.Component {
   render() {
     return (
       <div className="jumbotron favorites">
-      	<h2>Favorites</h2>
+      	<h4>Favorites</h4>
+      	<hr/>
       </div>
     );
   }

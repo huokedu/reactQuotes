@@ -1,5 +1,6 @@
 import React from 'react';
 import API from '../utils/API';
+import ResultItem from "../components/ResultItem.js";
 
 export default class Quote extends React.Component {
 
@@ -29,10 +30,11 @@ export default class Quote extends React.Component {
 
   render() {
     return (
-      <div className="jumbotron results">
-        <h2>Results</h2>
+      <div className="jumbotron results row">
+        <h4>Quotes</h4>
+        <hr/>
           {this.state.res.map( (item, index) =>{
-            return <div key={item._id}>{item.text}</div>
+            return <ResultItem quote={item.text} id={item._id}/>
           })}
       </div>
     );
