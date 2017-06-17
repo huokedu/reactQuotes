@@ -32,12 +32,21 @@ export default class Quote extends React.Component {
 
 	API.getQuotes().then( results =>{
 
+    var quoteArray = [];
+      
+    for (var key in results.data) {
+      quoteArray.push(results.data[key]);
+    }
+
 		console.log("data: ",results.data);
 
 		this.setState({
-			results: results.data
+			results: quoteArray
 		})
 	})
+
+    console.log("state", this.state.results);
+    console.log(typeof this.state.results);
 	
 
   }
