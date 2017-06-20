@@ -25,6 +25,8 @@ export default class Quote extends React.Component {
       res: array
     })
 
+    console.log("Quote's state", this.state.res);
+
   }
 
 
