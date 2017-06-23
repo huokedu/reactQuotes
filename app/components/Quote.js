@@ -6,52 +6,75 @@ export default class Quote extends React.Component {
 
   constructor(props) {
     super(props);
-     this.state = {
-     quote: " ",
-     results: ""
+      this.state = {
+      quote: " ",
+      results: []
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.getQuote = this.getQuote.bind(this);
   }
 
-  getQuote(event){
+  componentWillMount() {
+    this.refreshQuotesFromServer();
+  }
 
+  getQuote(event){
+    console.log("Quote.getQuote");
   	// console.log(event.target.value);
   	// console.log(event.target.id);
 
   	this.setState({
-		quote: event.target.value
-	});
+  		quote: event.target.value
+  	});
   }
 
   handleSubmit(event){
-	
-	console.log(this.state.quote);
+	  console.log("Quote.handleSubmit");
+  	console.log(this.state.quote);
 
-	API.saveQuote(this.state.quote);
+  	API.saveQuote(this.state.quote);
+    this.refreshQuotesFromServer();
 
-	API.getQuotes().then( results =>{
-
-    var quoteArray = [];
-      
-    for (var key in results.data) {
-      quoteArray.push(results.data[key]);
-    }
-
-		console.log("data: ",results.data);
-
-		this.setState({
-			results: quoteArray
-		})
-	})
-
+    console.log("Quote.submitHandled");
     console.log("state", this.state.results);
     console.log(typeof this.state.results);
-	
-
   }
 
+  refreshQuotesFromServer() {
+    API.getQuotes().then( results =>{
+
+      var quoteArray = [];
+        
+      for (var key in results.data) {
+        quoteArray.push(results.data[key]);
+      }
+
+      console.log("data: ",results.data);
+      console.log(quoteArray);
+
+      this.setState({
+        results: quoteArray
+      });
+    });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log("Quote.componentWillReceiveProps");
+    console.log(nextProps);
+  }
+
+
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log("Quote.shouldComponentUpdate");
+    console.log(nextProps);
+    console.log(nextState);
+    return true;
+  }
+
+
   render() {
+    console.log("Quote.render");
+    console.log(this);
     return (
       <div className="jumbotron">
       	<form >
@@ -63,11 +86,9 @@ export default class Quote extends React.Component {
 			</form>
 			<hr/>
 			<div className="jumbotron">
-	       		<Results results={this.state.results }/>
-	        </div>
+       		<Results results={this.state.results }/>
+        </div>
       </div>
-       
-
     );
   }
 }
