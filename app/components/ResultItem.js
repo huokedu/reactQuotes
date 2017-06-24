@@ -16,22 +16,29 @@ export default class ResultItem extends React.Component {
 
   favoriteQuote(event){
 
-  	API.favoriteQuote(event.target.value);
+    var x={
+      text: event.target.attributes.getNamedItem('data-text').value,
+      _id: event.target.attributes.getNamedItem('data-id').value
+    }
+
+  	API.favoriteQuote(x);
 
   }
 
-  deleteQuote(){
+  deleteQuote(event){
 
-  	API.deleteQuote(event.target.id);
+    console.log(event.target.value.trim());
+
+  	API.deleteQuote(event.target.value.trim());
   }
 
   render() {
-    console.log("ResultItem.render");
+    //console.log("ResultItem.render");
     return (
-      <div className="col-lg-2 col-md-4 col-sm-6 col-xs-12 text-center resultItem">
+      <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-center resultItem">
       	<p>{this.props.quote}</p>
-      		<button type="button" className="btn btn-sm btn-warning" onClick={this.favoriteQuote} value={this.props.quote}></button>
-      		<button type="button" className="btn btn-sm btn-warning" onClick={this.deleteQuote} value={this.props.id}></button>
+      		<button type="button" className="btn btn-sm btn-primary" onClick={this.favoriteQuote} data-text={this.props.quote} data-id={this.props.id}>Like</button>
+      		<button type="button" className="btn btn-sm btn-danger" onClick={this.deleteQuote} value={this.props.id}>Delete</button>
       </div>
     );
   }

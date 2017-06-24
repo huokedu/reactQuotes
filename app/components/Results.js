@@ -9,27 +9,27 @@ export default class Results extends React.Component {
   }
 
   componentDidMount(props){
-    console.log("Results.componentDidMount");
-    console.log("Quote's props", this.props);
+    //console.log("Results.componentDidMount");
+    //console.log("Quote's props", this.props);
 
   }
 
 
   componentDidUpdate(props) {
-    console.log("Results.componentDidUpdate");
-    console.log(props);
+    // console.log("Results.componentDidUpdate");
+    // console.log(props);
   }
 
 
   render() {
-    console.log("Results.render");
-    console.log(this);
+    //console.log("Results.render");
+    //console.log(this);
     return (
       <div className="jumbotron results row">
         <h4>Quotes</h4>
         <hr/>
           {this.props.results.map( (item, index) =>{
-            return <ResultItem quote={item.text} id={item._id}/>
+            return <ResultItem quote={item.text} id={item._id} key={index}/>
           })}
       </div>
     );

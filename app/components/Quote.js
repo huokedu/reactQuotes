@@ -19,7 +19,7 @@ export default class Quote extends React.Component {
   }
 
   getQuote(event){
-    console.log("Quote.getQuote");
+    //console.log("Quote.getQuote");
   	// console.log(event.target.value);
   	// console.log(event.target.id);
 
@@ -29,15 +29,15 @@ export default class Quote extends React.Component {
   }
 
   handleSubmit(event){
-	  console.log("Quote.handleSubmit");
-  	console.log(this.state.quote);
+	  //console.log("Quote.handleSubmit");
+  	//console.log(this.state.quote);
 
-  	API.saveQuote(this.state.quote);
+  	API.saveQuote(this.state.quote.trim());
     this.refreshQuotesFromServer();
 
-    console.log("Quote.submitHandled");
-    console.log("state", this.state.results);
-    console.log(typeof this.state.results);
+    // console.log("Quote.submitHandled");
+    // console.log("state", this.state.results);
+    // console.log(typeof this.state.results);
   }
 
   refreshQuotesFromServer() {
@@ -49,8 +49,8 @@ export default class Quote extends React.Component {
         quoteArray.push(results.data[key]);
       }
 
-      console.log("data: ",results.data);
-      console.log(quoteArray);
+      //console.log("data: ",results.data);
+      //console.log(quoteArray);
 
       this.setState({
         results: quoteArray
@@ -59,22 +59,22 @@ export default class Quote extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log("Quote.componentWillReceiveProps");
-    console.log(nextProps);
+    //console.log("Quote.componentWillReceiveProps");
+    //console.log(nextProps);
   }
 
 
   shouldComponentUpdate(nextProps, nextState) {
-    console.log("Quote.shouldComponentUpdate");
-    console.log(nextProps);
-    console.log(nextState);
+    // console.log("Quote.shouldComponentUpdate");
+    // console.log(nextProps);
+    // console.log(nextState);
     return true;
   }
 
 
   render() {
-    console.log("Quote.render");
-    console.log(this);
+    //console.log("Quote.render");
+    //console.log(this);
     return (
       <div className="jumbotron">
       	<form >
